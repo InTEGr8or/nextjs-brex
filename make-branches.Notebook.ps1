@@ -3,7 +3,7 @@
 $examplesPath = "C:/repos/nextjs/next.js/examples"
 Get-ChildItem $examplesPath | Select-Object Name | Set-Variable examples
 # Get branches
-git branch -l | Set-Variable existingBranches
+git branch -l | ForEach-Object {$_[2..100]} | Set-Variable existingBranches
 # ## Make branches
 $examples | ForEach-Object {
     if($_.Name -EQ $existingBranches[0][2..100] -Join "") {
