@@ -1,11 +1,10 @@
-import styles from '../styles.module.css'
-
-const Home = () => {
+export default function Index() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
+    <div>
+      <p>The console should be empty.</p>
     </div>
   )
 }
 
-export default Home
+console.log('log from index.js')
+console.error('error log from index.js')

@@ -1,10 +1,17 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+// @ts-check
 
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ **/
 const nextConfig = {
-  // any configs you need
+  compiler: {
+    // Remove `console.*` output except `console.error`
+    removeConsole: {
+      exclude: ['error'],
+    },
+    // Uncomment this to suppress all logs.
+    // removeConsole: true,
+  },
 }
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = nextConfig
