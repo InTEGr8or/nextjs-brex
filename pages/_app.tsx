@@ -1,14 +1,17 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import type { AppProps } from 'next/app'
+import type { DefaultTheme } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+const theme: DefaultTheme = {
+  colors: {
+    primary: '#0070f3',
+  },
+}
 
-  const { user } = pageProps
-
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
+    <ThemeProvider theme={theme}>
       <Component {...pageProps} />
-    </UserProvider>
+    </ThemeProvider>
   )
 }

@@ -1,11 +1,11 @@
-import styles from '../styles.module.css'
+import styled from 'styled-components'
 
-const Home = () => {
-  return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
-  )
+const Title = styled.h1`
+  font-size: 50px;
+  color: ${({ theme }) => theme.colors.primary};
+  text-align: left;
+`
+
+export default function Home() {
+  return <Title>My page</Title>
 }
-
-export default Home
