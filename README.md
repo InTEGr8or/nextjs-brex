@@ -1,27 +1,29 @@
-# Basic CSS example
+# Next.js + Jest
 
-Next.js has built-in support for [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) allowing you to write scoped CSS by automatically creating a unique class name. CSS Module files can be imported anywhere in your application and you don't have to worry about collisions.
+This example shows how to configure Jest to work with Next.js and Babel. Since the release of Next.js 12, Next.js has in-built configuration for Jest with SWC. See the [with-jest](https://github.com/vercel/next.js/tree/canary/examples/with-jest) example for the latest implementation.
 
-## Deploy your own
+This includes Next.js' built-in support for Global CSS, CSS Modules and TypeScript.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/basic-css)
+## How to Use
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/basic-css&project-name=basic-css&repository-name=basic-css)
+Quickly get started using [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app#readme)!
 
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+In your terminal, run the following command:
 
 ```bash
-npx create-next-app --example basic-css basic-css-app
+npx create-next-app --example with-jest-babel with-jest-babel-app
 ```
 
 ```bash
-yarn create next-app --example basic-css basic-css-app
+yarn create next-app --example with-jest-babel with-jest-babel-app
 ```
 
 ```bash
-pnpm create next-app --example basic-css basic-css-app
+pnpm create next-app --example with-jest-babel with-jest-babel-app
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Run Jest Tests
+
+```bash
+npm test
+```
