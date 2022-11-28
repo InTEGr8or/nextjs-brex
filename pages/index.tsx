@@ -1,20 +1,39 @@
-import useSWR from 'swr'
-import PersonComponent from '../components/Person'
-import { Person } from '../interfaces'
+import { useUser } from '@auth0/nextjs-auth0'
+import Layout from '../components/layout'
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
-
-export default function Index() {
-  const { data, error } = useSWR('/api/people', fetcher)
-
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
+const Home = () => {
+  const { user, isLoading } = useUser()
 
   return (
-    <ul>
-      {data.map((p: Person) => (
-        <PersonComponent key={p.id} person={p} />
-      ))}
-    </ul>
+    <Layout user={user} loading={isLoading}>
+      <h1>Next.js and Auth0 Example</h1>
+
+      {isLoading && <p>Loading login info...</p>}
+
+      {!isLoading && !user && (
+        <>
+          <p>
+            To test the login click in <i>Login</i>
+          </p>
+          <p>
+            Once you have logged in you should be able to navigate between
+            protected routes: client rendered, server rendered profile pages,
+            and <i>Logout</i>
+          </p>
+        </>
+      )}
+
+      {user && (
+        <>
+          <h4>Rendered user info on the client</h4>
+          <img src={user.picture} alt="user picture" />
+          <p>nickname: {user.nickname}</p>
+          <p>name: {user.name}</p>
+        </>
+      )}
+    </Layout>
   )
 }
+
+// fast/cached SSR page
+export default Home

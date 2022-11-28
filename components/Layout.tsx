@@ -1,52 +1,41 @@
 import Head from 'next/head'
-import { AmpIncludeAmpInstallServiceworker } from './amp/AmpCustomElement'
-
-// Your app's theme color
-const THEME_COLOR = '#005af0'
+import Header from './header'
 
 type LayoutProps = {
-  title: string
-  children?: React.ReactNode
-  description: string
+  user?: any
+  loading?: boolean
+  children: React.ReactNode
 }
 
-/**
- * A sample page layout installing the AMP Serviceworker by default.
- */
-const Layout: React.FC<LayoutProps> = ({ title, children, description }) => (
-  <>
-    <Head>
-      <title>{title || ''}</title>
-      <meta name="description" content={description || ''} />
-      <meta name="theme-color" content={THEME_COLOR} />
-      <link rel="icon" sizes="192x192" href="/static/images/icons-192.png" />
-      <link rel="apple-touch-icon" href="/static/images/icons-192.png" />
-      <link rel="icon" href="/static/favicon.ico" />
-      <link rel="manifest" href="/manifest.json" />
-    </Head>
+const Layout = ({ user, loading = false, children }: LayoutProps) => {
+  return (
+    <>
+      <Head>
+        <title>Next.js with Auth0</title>
+      </Head>
 
-    {children}
+      <Header user={user} loading={loading} />
 
-    <AmpIncludeAmpInstallServiceworker />
-    <amp-install-serviceworker
-      src="/serviceworker.js"
-      data-iframe-src="/install-serviceworker.html"
-      layout="nodisplay"
-    />
+      <main>
+        <div className="container">{children}</div>
+      </main>
 
-    <style jsx global>{`
-      body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-          Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-          'Segoe UI Symbol';
-        min-height: 100vh;
-        scroll-behavior: smooth;
-        text-rendering: optimizeSpeed;
-        line-height: 1.5;
-      }
-    `}</style>
-  </>
-)
+      <style jsx>{`
+        .container {
+          max-width: 42rem;
+          margin: 1.5rem auto;
+        }
+      `}</style>
+      <style jsx global>{`
+        body {
+          margin: 0;
+          color: #333;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+      `}</style>
+    </>
+  )
+}
 
 export default Layout

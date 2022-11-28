@@ -1,10 +1,9 @@
-export type Person = {
-  id: string
+export type User = {
+  email: string
+  email_verified: boolean
   name: string
-  height: string
-  mass: string
-  hair_color: string
-  skin_color: string
-  eye_color: string
-  gender: string
+  nickname: string
+  picture: string
+  sub: string
+  updated_at: string
 }
