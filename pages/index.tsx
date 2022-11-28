@@ -1,11 +1,10 @@
-import styles from '../styles.module.css'
+import Cat from '&/svgs/cat.svg'
+import styles from '&/styles/index.module.css'
 
-const Home = () => {
+export default function Home() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
+    <div className={styles.container}>
+      <Cat />
     </div>
   )
 }
-
-export default Home
