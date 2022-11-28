@@ -1,10 +1,8 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+// PatternFly 4 uses global CSS imports in its distribution files. Therefore,
+// we need to transpile the modules before we can use them.
+const withTM = require('next-transpile-modules')([
+  '@patternfly/react-core',
+  '@patternfly/react-styles',
+])
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
-}
-
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = withTM({})
