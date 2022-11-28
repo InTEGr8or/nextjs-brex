@@ -1,20 +1,32 @@
-import useSWR from 'swr'
-import PersonComponent from '../components/Person'
-import { Person } from '../interfaces'
+import Link from 'next/link'
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+import queryGraphql from '../shared/query-graphql'
 
-export default function Index() {
-  const { data, error } = useSWR('/api/people', fetcher)
-
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
-
+export default function UserListing({ users }) {
   return (
-    <ul>
-      {data.map((p: Person) => (
-        <PersonComponent key={p.id} person={p} />
-      ))}
-    </ul>
+    <div>
+      <h1>User Listing</h1>
+      <ul>
+        {users.map((user) => (
+          <li key={user.username}>
+            <Link href="/[username]" as={`/${user.username}`}>
+              {user.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
+}
+
+export async function getStaticProps() {
+  const { users } = await queryGraphql(`
+    query {
+      users {
+        name
+        username
+      }
+    }
+  `)
+  return { props: { users } }
 }
