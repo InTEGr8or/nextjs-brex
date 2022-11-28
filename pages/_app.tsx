@@ -1,14 +1,11 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import { log } from 'next-axiom'
+import { AppProps } from 'next/app'
+export { reportWebVitals } from 'next-axiom'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+log.info('Hello from frontend', { foo: 'bar' })
 
-  const { user } = pageProps
-
-  return (
-    <UserProvider user={user}>
-      <Component {...pageProps} />
-    </UserProvider>
-  )
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  return <Component {...pageProps} />
 }
+
+export default MyApp
