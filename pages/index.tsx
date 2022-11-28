@@ -1,11 +1,10 @@
-import styles from '../styles.module.css'
+import React, { ReactElement } from 'react'
+import { Text, TextContainer } from 'react-md'
 
-const Home = () => {
+export default function Home(): ReactElement {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
+    <TextContainer>
+      <Text type="headline-4">Hello, world!</Text>
+    </TextContainer>
   )
 }
-
-export default Home

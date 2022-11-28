@@ -1,14 +1,18 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import React, { ReactElement } from 'react'
+import Head from 'next/head'
+import { AppProps } from 'next/app'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+import Layout from '../components/Layout'
 
-  const { user } = pageProps
+import '../styles/app.scss'
 
+export default function App({ Component, pageProps }: AppProps): ReactElement {
   return (
-    <UserProvider user={user}>
+    <Layout>
+      <Head>
+        <title>react-md with next.js</title>
+      </Head>
       <Component {...pageProps} />
-    </UserProvider>
+    </Layout>
   )
 }
