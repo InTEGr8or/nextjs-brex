@@ -1,14 +1,17 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import { AppProps } from 'next/app'
+import Link from 'next/link'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+import '../styles/global.css'
 
-  const { user } = pageProps
+const MyApp = ({ Component, pageProps, router }: AppProps) => {
+  const pathname = router.pathname
 
   return (
-    <UserProvider user={user}>
+    <>
       <Component {...pageProps} />
-    </UserProvider>
+      {pathname !== '/' && <Link href="/">See all examples</Link>}
+    </>
   )
 }
+
+export default MyApp
