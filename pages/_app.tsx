@@ -1,14 +1,12 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import type { AppProps } from 'next/app'
+import { GeistProvider, CssBaseline } from '@geist-ui/core'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
-
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
+    <GeistProvider>
+      <CssBaseline />
       <Component {...pageProps} />
-    </UserProvider>
+    </GeistProvider>
   )
 }
+export default MyApp
