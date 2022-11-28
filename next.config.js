@@ -1,10 +1,11 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
-}
+module.exports = {
+  webpack(config) {
+    config.output.webassemblyModuleFilename = 'static/wasm/[modulehash].wasm'
 
-module.exports = withBundleAnalyzer(nextConfig)
+    // Since Webpack 5 doesn't enable WebAssembly by default, we should do it manually
+    config.experiments = { ...config.experiments, asyncWebAssembly: true }
+
+    return config
+  },
+}
