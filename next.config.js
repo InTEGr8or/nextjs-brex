@@ -1,10 +1,10 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
+module.exports = {
+  webpack: (configuration) => {
+    configuration.module.rules.push({
+      test: /\.md$/,
+      use: 'frontmatter-markdown-loader',
+    })
+    return configuration
+  },
 }
-
-module.exports = withBundleAnalyzer(nextConfig)
