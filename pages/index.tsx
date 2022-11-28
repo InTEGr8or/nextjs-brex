@@ -1,20 +1,43 @@
-import useSWR from 'swr'
-import PersonComponent from '../components/Person'
-import { Person } from '../interfaces'
+import gql from 'graphql-tag'
+import Link from 'next/link'
+import { useQuery } from '@apollo/client'
+import { initializeApollo } from '../apollo/client'
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+const ViewerQuery = gql`
+  query ViewerQuery {
+    viewer {
+      id
+      name
+      status
+    }
+  }
+`
 
-export default function Index() {
-  const { data, error } = useSWR('/api/people', fetcher)
-
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
+const Index = () => {
+  const {
+    data: { viewer },
+  } = useQuery(ViewerQuery)
 
   return (
-    <ul>
-      {data.map((p: Person) => (
-        <PersonComponent key={p.id} person={p} />
-      ))}
-    </ul>
+    <div>
+      You're signed in as {viewer.name} and you're {viewer.status} goto{' '}
+      <Link href="/about">static</Link> page.
+    </div>
   )
 }
+
+export async function getStaticProps() {
+  const apolloClient = initializeApollo()
+
+  await apolloClient.query({
+    query: ViewerQuery,
+  })
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+    },
+  }
+}
+
+export default Index
