@@ -1,27 +1,63 @@
-# Basic CSS example
+# Auth & Realtime GraphQL Example Using Next.js and Nhost
 
-Next.js has built-in support for [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) allowing you to write scoped CSS by automatically creating a unique class name. CSS Module files can be imported anywhere in your application and you don't have to worry about collisions.
+This example showcases Next.js as the frontend using [Nhost](https://nhost.io/) as the backend.
 
-## Deploy your own
+## Demo
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/basic-css)
+### [https://nhost-nextjs-example.vercel.app/](https://nhost-nextjs-example.vercel.app/)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/basic-css&project-name=basic-css&repository-name=basic-css)
+## Deploy Your Own
+
+Once you have created a Nhost project and have access to [the environment variables you'll need](#step-4-add-environment-variables), deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-nhost-auth-realtime-graphql&project-name=with-nhost-auth-realtime-graphql&repository-name=with-nhost-auth-realtime-graphql&env=NEXT_PUBLIC_GRAPHQL_URL,NEXT_PUBLIC_BACKEND_URL&envDescription=Enter%20your%20Nhost%20project%27s%20URLs)
 
 ## How to use
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```bash
-npx create-next-app --example basic-css basic-css-app
+npx create-next-app --example with-nhost-auth-realtime-graphql nhost-app
+# or
+yarn create next-app --example with-nhost-auth-realtime-graphql nhost-app
+# or
+pnpm create next-app --example with-nhost-auth-realtime-graphql nhost-app
 ```
+
+## Configuration
+
+### Step 1. Create an account and a project on Nhost
+
+[Create an account and project on Nhost](https://console.nhost.io).
+
+### Step 2. Create `items` database
+
+Go to your project's Hasura console. Go to the **DATA** tab in the top menu and click **SQL** in the bottom left menu.
+
+Then copy the content from `setup/data.sql` in this example and paste it in the **Raw SQL** form in the Hasura Console. Make sure **Track this** is checked and click **Run!**
+
+### Step 3. Add API metadata
+
+Again, in the Hasura console, click on the **gearwheel** (settings) in the top right menu. Click on **Import metadata** and select the file `setup/hasura-metadata.json` in this repository.
+
+### Step 4. Add environment variables
+
+Copy `.env.local.example` to `.env.local` and update the two URLs with your Nhost project URLs. You find the URLs in the Nhost console dashboard of your project.
+
+### Step 5. Run Next.js in development mode
 
 ```bash
-yarn create next-app --example basic-css basic-css-app
+npm install
+npm run dev
+
+# or
+
+yarn install
+yarn dev
 ```
 
-```bash
-pnpm create next-app --example basic-css basic-css-app
-```
+Your app should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+### Step 6. Deploy on Vercel
+
+You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
