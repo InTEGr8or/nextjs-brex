@@ -1,14 +1,16 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import '../styles/globals.css'
+import type { AppProps } from 'next/app'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+import { ConvexProvider, ConvexReactClient } from 'convex/react'
+import clientConfig from '../convex/_generated/clientConfig'
+const convex = new ConvexReactClient(clientConfig)
 
-  const { user } = pageProps
-
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
+    <ConvexProvider client={convex}>
       <Component {...pageProps} />
-    </UserProvider>
+    </ConvexProvider>
   )
 }
+
+export default MyApp
