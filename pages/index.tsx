@@ -1,11 +1,15 @@
-import styles from '../styles.module.css'
+import type { TypeA } from '../types'
 
-const Home = () => {
+const Example: TypeA = {
+  name: 'next',
+}
+
+export default function Home() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <h1>
+        <p>{Example.name}</p>
+      </h1>
     </div>
   )
 }
-
-export default Home
