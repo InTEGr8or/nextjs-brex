@@ -1,14 +1,18 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import '../styles/globals.css'
+import { configureAbly } from '@ably-labs/react-hooks'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+const prefix = process.env.API_ROOT || ''
+const clientId =
+  Math.random().toString(36).substring(2, 15) +
+  Math.random().toString(36).substring(2, 15)
 
-  const { user } = pageProps
+configureAbly({
+  authUrl: `${prefix}/api/createTokenRequest?clientId=${clientId}`,
+  clientId: clientId,
+})
 
-  return (
-    <UserProvider user={user}>
-      <Component {...pageProps} />
-    </UserProvider>
-  )
+function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />
 }
+
+export default MyApp
