@@ -1,14 +1,27 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import 'nextra-theme-blog/style.css'
+import type { AppProps } from 'next/app'
+import Head from 'next/head'
+import '../styles/main.css'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
-
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
+    <>
+      <Head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="RSS"
+          href="/feed.xml"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Inter-roman.latin.var.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </Head>
       <Component {...pageProps} />
-    </UserProvider>
+    </>
   )
 }
