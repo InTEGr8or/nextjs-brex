@@ -1,14 +1,20 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import { AppProps } from 'next/app'
+import { SWRConfig } from 'swr'
+import fetchJson from 'lib/fetchJson'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
-
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
+    <SWRConfig
+      value={{
+        fetcher: fetchJson,
+        onError: (err) => {
+          console.error(err)
+        },
+      }}
+    >
       <Component {...pageProps} />
-    </UserProvider>
+    </SWRConfig>
   )
 }
+
+export default MyApp
