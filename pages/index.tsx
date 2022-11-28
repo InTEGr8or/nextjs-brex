@@ -1,11 +1,14 @@
-import styles from '../styles.module.css'
+import Link from 'next/link'
 
-const Home = () => {
+export default function Home() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
+    <div>
+      <h3>Hello World.</h3>
+      <Link href="/about">About</Link>
+      <br />
+      <Link href="/hello/[slug]" as="/hello/world">
+        Hello world
+      </Link>
     </div>
   )
 }
-
-export default Home
