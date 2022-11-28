@@ -1,10 +1,11 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
-}
+module.exports = {
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.js$/,
+      use: ['@compiled/webpack-loader'],
+    })
 
-module.exports = withBundleAnalyzer(nextConfig)
+    return config
+  },
+}
