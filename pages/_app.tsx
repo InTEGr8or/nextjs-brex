@@ -1,14 +1,11 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import { AppProps } from 'next/app'
+import { ThemeProvider } from 'reflexjs'
+import theme from '../src/theme'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
-
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
+    <ThemeProvider theme={theme}>
       <Component {...pageProps} />
-    </UserProvider>
+    </ThemeProvider>
   )
 }
