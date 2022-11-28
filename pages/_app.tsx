@@ -1,14 +1,8 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import '../style/index.css'
+import '../style/common.css'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
-
-  return (
-    <UserProvider user={user}>
-      <Component {...pageProps} />
-    </UserProvider>
-  )
+function MyApp({ Component, pageProps }: any) {
+  return <Component {...pageProps} />
 }
+
+export default MyApp

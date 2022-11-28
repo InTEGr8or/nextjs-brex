@@ -1,10 +1,12 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // any configs you need
+  reactStrictMode: false,
+  compiler: {
+    styledComponents: true,
+  },
+  images: {
+    domains: ['cdn.api.video'],
+  },
 }
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = nextConfig
