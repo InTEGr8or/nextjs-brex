@@ -1,39 +1,47 @@
-import ActiveLink from './ActiveLink'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-const Nav = () => (
-  <nav>
-    <style jsx>{`
-      .nav-link {
-        text-decoration: none;
-      }
-
-      .active:after {
-        content: ' (current page)';
-      }
-    `}</style>
-    <ul className="nav">
-      <li>
-        <ActiveLink activeClassName="active" href="/">
-          <a className="nav-link">Home</a>
-        </ActiveLink>
-      </li>
-      <li>
-        <ActiveLink activeClassName="active" href="/about">
-          <a className="nav-link">About</a>
-        </ActiveLink>
-      </li>
-      <li>
-        <ActiveLink activeClassName="active" href="/blog">
-          <a className="nav-link">Blog</a>
-        </ActiveLink>
-      </li>
-      <li>
-        <ActiveLink activeClassName="active" href="/[slug]" as="/dynamic-route">
-          <a className="nav-link">Dynamic Route</a>
-        </ActiveLink>
-      </li>
-    </ul>
-  </nav>
-)
-
-export default Nav
+export default function Nav() {
+  const router = useRouter()
+  return (
+    <div className="root">
+      <h2>Default</h2>
+      <p>
+        Automatically prefetch pages in the background as soon the Link appears
+        in the view:
+      </p>
+      <Link href="/" legacyBehavior>
+        <a>Home</a>
+      </Link>{' '}
+      <Link href="/features" legacyBehavior>
+        <a>Features</a>
+      </Link>
+      <h2>Imperative</h2>
+      <p>Prefetch on onMouseEnter or on other events:</p>
+      <Link prefetch={false} href="/about" legacyBehavior>
+        <a
+          onMouseEnter={() => {
+            router.prefetch('/about')
+            console.log('prefetching /about!')
+          }}
+        >
+          About
+        </a>
+      </Link>
+      <h2>Disable</h2>
+      <p>Disable prefetching</p>
+      <Link prefetch={false} href="/contact" legacyBehavior>
+        <a>Contact</a>
+      </Link>
+      <style jsx>{`
+        .root {
+          border-bottom: 1px solid grey;
+          padding-bottom: 8px;
+        }
+        a {
+          margin-right: 10px;
+        }
+      `}</style>
+    </div>
+  )
+}

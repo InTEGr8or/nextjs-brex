@@ -1,14 +1,11 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import type { AppProps } from 'next/app'
+import Nav from '../components/Nav'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
-
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
+    <>
+      <Nav />
       <Component {...pageProps} />
-    </UserProvider>
+    </>
   )
 }
