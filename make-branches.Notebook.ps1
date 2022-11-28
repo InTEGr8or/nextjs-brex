@@ -18,7 +18,7 @@ $examples | ForEach-Object {
         Write-Host "Adding branch $($_.Name)"
         git checkout main
         git checkout -b $($_.Name)
-        Copy-Item $examplesPath/$($_.Name)/* . -Recurse -Force
+        Copy-Item $examplesPath/$($_.Name)/* . -Recurse -Force -Exclude *.lock
         git add .
         git commit -m 'Add files from Exampls'
         git push -u origin "$($_.Name)"
