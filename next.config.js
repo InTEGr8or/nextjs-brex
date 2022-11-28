@@ -1,10 +1,11 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: '/blog',
+        destination: '/news',
+      },
+    ]
+  },
 }
-
-module.exports = withBundleAnalyzer(nextConfig)
