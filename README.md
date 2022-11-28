@@ -1,27 +1,29 @@
-# Basic CSS example
+# Supabase Authentication
 
-Next.js has built-in support for [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) allowing you to write scoped CSS by automatically creating a unique class name. CSS Module files can be imported anywhere in your application and you don't have to worry about collisions.
+This example shows how to use Supabase Auth on the client and server in both [API Routes](https://nextjs.org/docs/api-routes/introduction) and when using [server-side rendering (SSR)](https://nextjs.org/docs/basic-features/pages#server-side-rendering).
 
-## Deploy your own
+## Deploy with Vercel
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/basic-css)
+The Vercel deployment will guide you through creating a Supabase account and project. After installation of the Supabase integration, all relevant environment variables will be set up so that the project is usable immediately after deployment 🚀
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/basic-css&project-name=basic-css&repository-name=basic-css)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-supabase-auth-realtime-db&project-name=nextjs-with-supabase-auth&repository-name=nextjs-with-supabase-auth&integration-ids=oac_jUduyjQgOyzev1fjrW83NYOv)
 
-## How to use
+## Running Locally
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+1. `cd` into this directory
+1. Run `npm install` to install dependencies
+1. Create a Supabase account and new project
+1. Copy `.env.local.example` into `.env.local` and add the project keys
+1. Run `npm run dev` to start the local development server
 
-```bash
-npx create-next-app --example basic-css basic-css-app
-```
+## Feedback and issues
 
-```bash
-yarn create next-app --example basic-css basic-css-app
-```
+Please file feedback and issues over on the [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose).
 
-```bash
-pnpm create next-app --example basic-css basic-css-app
-```
+## More Supabase examples
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+- [Next.js Subscription Payments Starter](https://github.com/vercel/nextjs-subscription-payments)
+- [Next.js Slack Clone](https://github.com/supabase/supabase/tree/master/examples/slack-clone/nextjs-slack-clone)
+- [Next.js Todo List](https://github.com/supabase/supabase/tree/master/examples/todo-list)
+- [Next.js Live Tracker Map](https://github.com/supabase/supabase/tree/master/examples/with-leaflet)
+- [And many more...](https://github.com/supabase/supabase/tree/master/examples)
