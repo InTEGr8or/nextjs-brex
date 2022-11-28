@@ -1,14 +1,15 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import createCache from '@emotion/cache'
+import { CacheProvider } from '@emotion/react'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+import { globalStyles } from '../shared/styles'
 
-  const { user } = pageProps
+const cache = createCache({ key: 'next' })
 
-  return (
-    <UserProvider user={user}>
-      <Component {...pageProps} />
-    </UserProvider>
-  )
-}
+const App = ({ Component, pageProps }) => (
+  <CacheProvider value={cache}>
+    {globalStyles}
+    <Component {...pageProps} />
+  </CacheProvider>
+)
+
+export default App
