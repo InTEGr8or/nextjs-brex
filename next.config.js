@@ -1,10 +1,10 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
-}
+module.exports = {
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      require('./scripts/generate-sitemap')
+    }
 
-module.exports = withBundleAnalyzer(nextConfig)
+    return config
+  },
+}
