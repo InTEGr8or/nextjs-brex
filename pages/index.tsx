@@ -1,20 +1,45 @@
-import useSWR from 'swr'
-import PersonComponent from '../components/Person'
-import { Person } from '../interfaces'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { gql, useQuery } from '@apollo/client'
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+const ViewerQuery = gql`
+  query ViewerQuery {
+    viewer {
+      id
+      email
+    }
+  }
+`
 
-export default function Index() {
-  const { data, error } = useSWR('/api/people', fetcher)
+const Index = () => {
+  const router = useRouter()
+  const { data, loading, error } = useQuery(ViewerQuery)
+  const viewer = data?.viewer
+  const shouldRedirect = !(loading || error || viewer)
 
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
+  useEffect(() => {
+    if (shouldRedirect) {
+      router.push('/signin')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shouldRedirect])
 
-  return (
-    <ul>
-      {data.map((p: Person) => (
-        <PersonComponent key={p.id} person={p} />
-      ))}
-    </ul>
-  )
+  if (error) {
+    return <p>{error.message}</p>
+  }
+
+  if (viewer) {
+    return (
+      <div>
+        You're signed in as {viewer.email}. Go to{' '}
+        <Link href="/about">about</Link> page or{' '}
+        <Link href="/signout">signout</Link>.
+      </div>
+    )
+  }
+
+  return <p>Loading...</p>
 }
+
+export default Index
