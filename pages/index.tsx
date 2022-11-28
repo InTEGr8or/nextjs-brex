@@ -1,11 +1,25 @@
-import styles from '../styles.module.css'
+import { useEffect, useRef, useCallback } from 'react'
 
-const Home = () => {
+export default function Index() {
+  const workerRef = useRef<Worker>()
+
+  useEffect(() => {
+    workerRef.current = new Worker(new URL('../worker.ts', import.meta.url))
+    workerRef.current.onmessage = (event: MessageEvent<number>) =>
+      alert(`WebWorker Response => ${event.data}`)
+    return () => {
+      workerRef.current.terminate()
+    }
+  }, [])
+
+  const handleWork = useCallback(async () => {
+    workerRef.current.postMessage(100000)
+  }, [])
+
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
+    <>
+      <p>Do work in a WebWorker!</p>
+      <button onClick={handleWork}>Calculate PI</button>
+    </>
   )
 }
-
-export default Home
