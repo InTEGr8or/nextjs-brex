@@ -1,11 +1,13 @@
-import styles from '../styles.module.css'
+import Counter from '../components/Counter'
+import Toggle from '../components/Toggle'
 
-const Home = () => {
+export default function IndexPage() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
+    <>
+      <h1>XState Example</h1>
+      <Counter />
+      <hr />
+      <Toggle />
+    </>
   )
 }
-
-export default Home
