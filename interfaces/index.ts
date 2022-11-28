@@ -1,9 +1,24 @@
-export type User = {
-  email: string
-  email_verified: boolean
-  name: string
-  nickname: string
-  picture: string
-  sub: string
-  updated_at: string
+export type ImgixType = {
+  url: string
+  imgix_url: string
+}
+
+export type AuthorType = {
+  title: string
+  metadata: {
+    picture: ImgixType
+  }
+}
+
+export type PostType = {
+  title: string
+  slug: string
+  content: string
+  created_at: string
+  metadata: {
+    cover_image: ImgixType
+    author: AuthorType
+    excerpt: string
+    content: string
+  }
 }

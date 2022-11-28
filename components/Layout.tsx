@@ -1,39 +1,24 @@
-import Head from 'next/head'
-import Header from './header'
+import Alert from './alert'
+import Footer from './footer'
+import Meta from './meta'
+import 'lazysizes'
+import 'lazysizes/plugins/parent-fit/ls.parent-fit'
+import { ReactNode } from 'react'
 
 type LayoutProps = {
-  user?: any
-  loading?: boolean
-  children: React.ReactNode
+  preview: boolean
+  children: ReactNode
 }
 
-const Layout = ({ user, loading = false, children }: LayoutProps) => {
+const Layout = ({ preview, children }: LayoutProps) => {
   return (
     <>
-      <Head>
-        <title>Next.js with Auth0</title>
-      </Head>
-
-      <Header user={user} loading={loading} />
-
-      <main>
-        <div className="container">{children}</div>
-      </main>
-
-      <style jsx>{`
-        .container {
-          max-width: 42rem;
-          margin: 1.5rem auto;
-        }
-      `}</style>
-      <style jsx global>{`
-        body {
-          margin: 0;
-          color: #333;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-            Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-      `}</style>
+      <Meta />
+      <div className="min-h-screen">
+        <Alert preview={preview} />
+        <main>{children}</main>
+      </div>
+      <Footer />
     </>
   )
 }
