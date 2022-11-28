@@ -1,14 +1,12 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import '../styles/globals.css'
+import { NextUIProvider } from '@nextui-org/react'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+import type { AppProps } from 'next/app'
 
-  const { user } = pageProps
-
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
+    <NextUIProvider>
       <Component {...pageProps} />
-    </UserProvider>
+    </NextUIProvider>
   )
 }
