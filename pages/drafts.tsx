@@ -6,24 +6,22 @@ import { PostProps } from './blog/[id]'
 import { client, e } from '../client'
 
 type Props = {
-  feed: PostProps[]
+  drafts: PostProps[]
 }
 
-const Blog: React.FC<Props> = (props) => {
+const Drafts: React.FC<Props> = (props) => {
   return (
     <Layout>
       <div className="page">
-        <h1>Published posts</h1>
+        <h1>Drafts</h1>
         <main>
-          {props.feed.length ? (
-            props.feed.map((post) => (
-              <div key={post.id} className="post">
-                <Post post={post} />
-              </div>
-            ))
-          ) : (
-            <p>No blog posts yet.</p>
-          )}
+          {props.drafts.length
+            ? props.drafts.map((post) => (
+                <div key={post.id} className="post">
+                  <Post post={post} />
+                </div>
+              ))
+            : 'No drafts yet.'}
         </main>
       </div>
       <style jsx>{`
@@ -47,19 +45,18 @@ const Blog: React.FC<Props> = (props) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const feed = await e
+  const drafts = await e
     .select(e.Post, (post) => ({
       id: true,
       title: true,
       content: true,
       authorName: true,
-      publishedISO: true,
-      filter: e.op('exists', post.published),
+      filter: e.op('not', e.op('exists', post.published)),
     }))
     .run(client)
   return {
-    props: { feed },
+    props: { drafts },
   }
 }
 
-export default Blog
+export default Drafts
