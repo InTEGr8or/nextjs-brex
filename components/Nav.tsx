@@ -1,39 +1,44 @@
-import ActiveLink from './ActiveLink'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FormattedMessage } from 'react-intl'
+import styles from './Nav.module.css'
 
-const Nav = () => (
-  <nav>
-    <style jsx>{`
-      .nav-link {
-        text-decoration: none;
-      }
+export default function Nav() {
+  const { locale, locales, asPath } = useRouter()
+  return (
+    <nav className={styles.nav}>
+      <li className={styles.li}>
+        <Link href="/" passHref>
+          <FormattedMessage
+            defaultMessage="Home"
+            description="Nav: Index name"
+          />
+        </Link>
+      </li>
+      <li className={styles.li}>
+        <Link href="/about" passHref>
+          <FormattedMessage
+            defaultMessage="About"
+            description="Nav: About item"
+          />
+        </Link>
+      </li>
 
-      .active:after {
-        content: ' (current page)';
-      }
-    `}</style>
-    <ul className="nav">
-      <li>
-        <ActiveLink activeClassName="active" href="/">
-          <a className="nav-link">Home</a>
-        </ActiveLink>
-      </li>
-      <li>
-        <ActiveLink activeClassName="active" href="/about">
-          <a className="nav-link">About</a>
-        </ActiveLink>
-      </li>
-      <li>
-        <ActiveLink activeClassName="active" href="/blog">
-          <a className="nav-link">Blog</a>
-        </ActiveLink>
-      </li>
-      <li>
-        <ActiveLink activeClassName="active" href="/[slug]" as="/dynamic-route">
-          <a className="nav-link">Dynamic Route</a>
-        </ActiveLink>
-      </li>
-    </ul>
-  </nav>
-)
+      <li className={styles.divider}></li>
 
-export default Nav
+      {locales?.map((availableLocale) => (
+        <li key={availableLocale} className={styles.li}>
+          <Link
+            href={asPath}
+            locale={availableLocale}
+            passHref
+            prefetch={false}
+            className={availableLocale === locale ? styles.active : undefined}
+          >
+            {availableLocale}
+          </Link>
+        </li>
+      ))}
+    </nav>
+  )
+}

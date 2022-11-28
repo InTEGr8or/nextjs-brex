@@ -1,41 +1,37 @@
+import { ReactNode } from 'react'
+import { useIntl } from 'react-intl'
 import Head from 'next/head'
-import Header from './header'
+import Nav from './Nav'
 
-type LayoutProps = {
-  user?: any
-  loading?: boolean
-  children: React.ReactNode
+interface LayoutProps {
+  title?: string
+  description?: string
+  children: ReactNode
 }
 
-const Layout = ({ user, loading = false, children }: LayoutProps) => {
+export default function Layout({ title, description, children }: LayoutProps) {
+  const intl = useIntl()
+
+  title ||= intl.formatMessage({
+    defaultMessage: 'React Intl Next.js Example',
+    description: 'Default document title',
+  })
+
+  description ||= intl.formatMessage({
+    defaultMessage: 'This page is powered by Next.js',
+    description: 'Default document description',
+  })
+
   return (
     <>
       <Head>
-        <title>Next.js with Auth0</title>
+        <title>{title}</title>
+        <meta name="description" content={description} />
       </Head>
-
-      <Header user={user} loading={loading} />
-
-      <main>
-        <div className="container">{children}</div>
-      </main>
-
-      <style jsx>{`
-        .container {
-          max-width: 42rem;
-          margin: 1.5rem auto;
-        }
-      `}</style>
-      <style jsx global>{`
-        body {
-          margin: 0;
-          color: #333;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-            Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-      `}</style>
+      <header>
+        <Nav />
+      </header>
+      {children}
     </>
   )
 }
-
-export default Layout

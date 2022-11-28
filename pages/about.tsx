@@ -1,24 +1,31 @@
-import { useUser } from '@auth0/nextjs-auth0'
-import Layout from '../components/layout'
+import type { GetServerSidePropsContext } from 'next'
+import { FormattedRelativeTime, useIntl } from 'react-intl'
+import loadIntlMessages from '../helper/loadIntlMessages'
+import Layout from '../components/Layout'
 
-const About = () => {
-  const { user, isLoading } = useUser()
+export async function getStaticProps({
+  locale,
+  defaultLocale,
+}: GetServerSidePropsContext) {
+  return {
+    props: {
+      intlMessages: await loadIntlMessages(locale as string, defaultLocale),
+    },
+  }
+}
 
+export default function AboutPage() {
+  const intl = useIntl()
   return (
-    <Layout user={user} loading={isLoading}>
-      <h1>About</h1>
+    <Layout
+      title={intl.formatMessage({
+        defaultMessage: 'About',
+        description: 'Nav: About item',
+      })}
+    >
       <p>
-        This project shows different ways to display Profile info: using{' '}
-        <i>Client rendered</i>, <i>Server rendered</i>, and <i>API rendered</i>
-      </p>
-      <p>
-        Navigating between this page and <i>Home</i> is always pretty fast.
-        However, when you navigate to the <i>Server rendered profile</i> page it
-        takes more time because it uses SSR to fetch the user and then to
-        display it
+        <FormattedRelativeTime numeric="auto" value={1} unit="hour" />
       </p>
     </Layout>
   )
 }
-
-export default About
