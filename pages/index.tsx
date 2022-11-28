@@ -1,11 +1,7 @@
-import styles from '../styles.module.css'
+import { style } from 'typestyle'
 
-const Home = () => {
-  return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
-  )
+const className = style({ color: 'red' })
+
+export default function Home() {
+  return <div className={className}>Hello Next.js!</div>
 }
-
-export default Home
