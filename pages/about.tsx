@@ -1,24 +1,29 @@
-import { useUser } from '@auth0/nextjs-auth0'
-import Layout from '../components/layout'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import styles from '../styles.module.css'
+import Code from '../components/Code'
 
-const About = () => {
-  const { user, isLoading } = useUser()
+export default function About() {
+  const { asPath, route } = useRouter()
+  const [path, setPath] = useState<string | null>(null)
+
+  // `asPath` is always `/about` in Node.js (server render), because the page is statically generated
+  // so we wait for the browser to load, and use the updated `asPath`, which may be a path
+  // other than `/about` when using a rewrite. This way we can avoid a content mismatch
+  useEffect(() => setPath(asPath), [asPath])
 
   return (
-    <Layout user={user} loading={isLoading}>
-      <h1>About</h1>
-      <p>
-        This project shows different ways to display Profile info: using{' '}
-        <i>Client rendered</i>, <i>Server rendered</i>, and <i>API rendered</i>
-      </p>
-      <p>
-        Navigating between this page and <i>Home</i> is always pretty fast.
-        However, when you navigate to the <i>Server rendered profile</i> page it
-        takes more time because it uses SSR to fetch the user and then to
-        display it
-      </p>
-    </Layout>
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <h1>Path: {path}</h1>
+        <hr className={styles.hr} />
+        <p>
+          {' '}
+          This page was rendered by <Code>{`pages${route}.js`}</Code>.
+        </p>
+        <Link href="/">&larr; Back home</Link>
+      </div>
+    </div>
   )
 }
-
-export default About
