@@ -1,14 +1,19 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import '../styles/globals.css'
+import type { AppProps } from 'next/app'
+import { Web3ReactProvider } from '@web3-react/core'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
+function MyApp({ Component, pageProps }: AppProps) {
+  const getLibrary = (provider: any) => {
+    return provider
+  }
 
   return (
-    <UserProvider user={user}>
-      <Component {...pageProps} />
-    </UserProvider>
+    <>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <Component {...pageProps} />
+      </Web3ReactProvider>
+    </>
   )
 }
+
+export default MyApp
