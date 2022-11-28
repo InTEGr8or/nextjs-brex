@@ -1,11 +1,10 @@
-import styles from '../styles.module.css'
+import Header from '../components/header'
 
-const Home = () => {
-  return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
-  )
-}
+const Home = () => (
+  <>
+    <Header />
+    <h1>Hello World!</h1>
+  </>
+)
 
 export default Home
