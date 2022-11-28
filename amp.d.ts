@@ -3,33 +3,39 @@
 // Only the intrinsic elements defined here will be accepted, and only with the attributes defined here
 declare namespace JSX {
   interface AmpImg {
-    alt?: string
-    src?: string
+    alt: string
+    src: string
     width?: string
     height?: string
-    layout?: string
-  }
-  interface AmpInstallServiceWorker {
-    src: string
-    'data-iframe-src': string
     layout: string
   }
-  interface AmpState {
-    id?: string
-    children?: any
-    src?: string
-  }
-  interface AmpScript {
-    id?: string
-    children?: any
-    layout?: string
-    width?: string
-    height?: string
-    script?: any
-    src?: string
-  }
-  interface AmpCarousel {
+  interface AmpVideo {
+    width: string
+    height: string
+    layout: string
+    poster: string
     children: React.ReactNode
+    autoplay: string
+    loop?: string
+  }
+  interface AmpStory {
+    standalone: string
+    title: string
+    publisher: string
+    'publisher-logo-src': string
+    'poster-portrait-src': string
+    children: React.ReactNode
+  }
+  interface AmpStoryPage {
+    id: string
+    children: React.ReactNode
+  }
+  interface AmpStoryGridLayer {
+    template: 'fill' | 'vertical' | 'horizontal' | 'thirds'
+    children: React.ReactNode
+  }
+  interface AmpStoryBookend {
+    src: string
     layout?:
       | 'fill'
       | 'fixed'
@@ -38,52 +44,27 @@ declare namespace JSX {
       | 'intrinsic'
       | 'nodisplay'
       | 'responsive'
-    width: string
-    height: string
-    type: 'slides' | 'carousel'
-    role?: 'region' | 'list' | 'listitem'
-    controls?: ''
-    loop?: ''
-    autoplay?: ''
-    delay?: string
-    id?: string
-  }
-  interface AmpList {
-    layout?:
-      | 'fill'
-      | 'fixed'
-      | 'fixed-height'
-      | 'flex-item'
-      | 'nodisplay'
-      | 'responsive'
-    temlate?: string
-    width?: string
-    height?: string
-    credentials?: 'omit' | 'include'
-    children: React.ReactNode
-    src?: string
-    binding?: string
   }
   interface IntrinsicElements {
     'amp-img': AmpImg
-    'amp-install-serviceworker': AmpInstallServiceWorker
-    'amp-state': AmpState
-    'amp-script': AmpScript
-    'amp-carousel': AmpCarousel
-    'amp-list': AmpList
+    'amp-video': AmpVideo
+    'amp-story': AmpStory
+    'amp-story-grid-layer': AmpStoryGridLayer
+    'amp-story-page': AmpStoryPage
+    'amp-story-bookend': AmpStoryBookend
   }
 }
 
 // Only the intrinsic elements defined here will be accepted, attributes don't matter
 // declare namespace JSX {
-//     interface IntrinsicElements {
-//       'amp-img': any
-//       'amp-install-serviceworker': any
-//       'amp-state': any
-//       'amp-script': any
-//       'amp-carousel': any
-//       'amp-list': any
-//     }
+//   interface IntrinsicElements {
+//     'amp-img': any
+//     'amp-video': any
+//     'amp-story': any
+//     'amp-story-grid-layer': any
+//     'amp-story-page': any
+//     'amp-story-bookend': any
+//   }
 // }
 
 // All intrinsic elements will be accepted
@@ -92,16 +73,3 @@ declare namespace JSX {
 //     [elemName: string]: any
 //   }
 // }
-
-// Allow custom AMP attributes on HTML elements
-declare namespace React {
-  interface ScriptHTMLAttributes {
-    target?: string
-  }
-
-  interface HTMLAttributes {
-    submitting?: string
-    type?: string
-    on?: string
-  }
-}
