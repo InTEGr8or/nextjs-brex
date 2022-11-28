@@ -1,11 +1,17 @@
-import styles from '../styles.module.css'
+import { useEffect } from 'react'
 
-const Home = () => {
-  return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
-  )
+export default function Home() {
+  useEffect(() => {
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then((registration) =>
+        console.log(
+          'Service Worker registration successful with scope: ',
+          registration.scope
+        )
+      )
+      .catch((err) => console.log('Service Worker registration failed: ', err))
+  }, [])
+
+  return <h1>with-service-worker</h1>
 }
-
-export default Home
