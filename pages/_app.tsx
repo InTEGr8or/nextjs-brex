@@ -1,14 +1,12 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import type { AppProps } from 'next/app'
+import { useEffect } from 'react'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
-
-  return (
-    <UserProvider user={user}>
-      <Component {...pageProps} />
-    </UserProvider>
-  )
+export default function App({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    const style = document.getElementById('server-side-styles')
+    if (style && style.parentNode) {
+      style.parentNode.removeChild(style)
+    }
+  }, [])
+  return <Component {...pageProps} />
 }
