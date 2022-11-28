@@ -1,30 +1,20 @@
-import { NextPage, GetStaticProps } from 'next'
-import Link from 'next/link'
-import { faker } from '@faker-js/faker'
+import useSWR from 'swr'
+import PersonComponent from '../components/Person'
+import { Person } from '../interfaces'
 
-type IndexProps = {
-  name: string
-}
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-const Index: NextPage<IndexProps> = ({ name }) => {
+export default function Index() {
+  const { data, error } = useSWR('/api/people', fetcher)
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
   return (
-    <div>
-      <h1>Home Page</h1>
-      <p>Welcome, {name}</p>
-      <div>
-        <Link href="/about">About Page</Link>
-      </div>
-    </div>
+    <ul>
+      {data.map((p: Person) => (
+        <PersonComponent key={p.id} person={p} />
+      ))}
+    </ul>
   )
-}
-
-export default Index
-
-export const getStaticProps: GetStaticProps = async () => {
-  // The name will be generated at build time only
-  const name = faker.name.findName()
-
-  return {
-    props: { name },
-  }
 }
