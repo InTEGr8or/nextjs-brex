@@ -1,11 +1,37 @@
-import styles from '../styles.module.css'
+import Head from 'next/head'
+import { GetStaticProps, NextPage } from 'next'
+import Post from '../components/post'
+import { PostData, PostDataListProps } from '../types/postdata'
+import { GetPosts } from '../lib/postdata_api'
 
-const Home = () => {
+export const getStaticProps: GetStaticProps = async (_context) => {
+  // fetch list of posts
+  const posts: PostData[] = await GetPosts()
+  return {
+    props: {
+      postDataList: posts,
+    },
+  }
+}
+
+const IndexPage: NextPage<PostDataListProps> = ({
+  postDataList,
+}: PostDataListProps) => {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
+    <main>
+      <Head>
+        <title>Home page</title>
+      </Head>
+
+      <h1>List of posts</h1>
+
+      <section>
+        {postDataList.map((post: PostData) => (
+          <Post {...post} key={post.id} />
+        ))}
+      </section>
+    </main>
   )
 }
 
-export default Home
+export default IndexPage
