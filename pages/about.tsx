@@ -1,24 +1,45 @@
-import { useUser } from '@auth0/nextjs-auth0'
+import type { NextPageWithLayout } from './_app'
 import Layout from '../components/layout'
+import Sidebar from '../components/sidebar'
 
-const About = () => {
-  const { user, isLoading } = useUser()
-
+const About: NextPageWithLayout = () => {
   return (
-    <Layout user={user} loading={isLoading}>
-      <h1>About</h1>
+    <section>
+      <h2>Layout Example (About)</h2>
       <p>
-        This project shows different ways to display Profile info: using{' '}
-        <i>Client rendered</i>, <i>Server rendered</i>, and <i>API rendered</i>
+        This example adds a property <code>getLayout</code> to your page,
+        allowing you to return a React component for the layout. This allows you
+        to define the layout on a per-page basis. Since we're returning a
+        function, we can have complex nested layouts if desired.
       </p>
       <p>
-        Navigating between this page and <i>Home</i> is always pretty fast.
-        However, when you navigate to the <i>Server rendered profile</i> page it
-        takes more time because it uses SSR to fetch the user and then to
-        display it
+        When navigating between pages, we want to persist page state (input
+        values, scroll position, etc.) for a Single-Page Application (SPA)
+        experience.
       </p>
-    </Layout>
+      <p>
+        This layout pattern will allow for state persistence because the React
+        component tree is persisted between page transitions. To preserve state,
+        we need to prevent the React component tree from being discarded between
+        page transitions.
+      </p>
+      <h3>Try It Out</h3>
+      <p>
+        To visualize this, try tying in the search input in the{' '}
+        <code>Sidebar</code> and then changing routes. You'll notice the input
+        state is persisted.
+      </p>
+    </section>
   )
 }
 
 export default About
+
+About.getLayout = function getLayout(page: React.ReactElement) {
+  return (
+    <Layout>
+      <Sidebar />
+      {page}
+    </Layout>
+  )
+}
