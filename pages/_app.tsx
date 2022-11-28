@@ -1,14 +1,17 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import type { AppProps } from 'next/app'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+interface LayoutProps {
+  children: React.ReactNode
+}
 
-  const { user } = pageProps
+const Layout = ({ children }: LayoutProps) => (
+  <div className="layout">{children}</div>
+)
 
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
+    <Layout>
       <Component {...pageProps} />
-    </UserProvider>
+    </Layout>
   )
 }
