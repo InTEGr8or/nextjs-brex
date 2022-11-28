@@ -1,11 +1,11 @@
-import styles from '../styles.module.css'
+import Header from 'components/header'
+import Button from '@/components/button'
 
-const Home = () => {
+export default function Home() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
+    <>
+      <Header />
+      <Button />
+    </>
   )
 }
-
-export default Home
