@@ -1,11 +1,10 @@
-import styles from '../styles.module.css'
+import Header from '../components/header'
 
-const Home = () => {
+export default function IndexPage() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
+    <>
+      <Header />
+      <h1>Hello World!</h1>
+    </>
   )
 }
-
-export default Home
