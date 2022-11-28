@@ -1,11 +1,4 @@
-import styles from '../styles.module.css'
-
-const Home = () => {
-  return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
-  )
+/** Add your relevant code here for the issue to reproduce */
+export default function Home() {
+  return null
 }
-
-export default Home
