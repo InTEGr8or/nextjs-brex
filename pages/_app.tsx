@@ -1,14 +1,11 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import { Theme } from '@twilio-paste/core/theme'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
-
+function MyApp({ Component, pageProps }) {
   return (
-    <UserProvider user={user}>
+    <Theme.Provider theme="default">
       <Component {...pageProps} />
-    </UserProvider>
+    </Theme.Provider>
   )
 }
+
+export default MyApp
