@@ -1,20 +1,29 @@
 import useSWR from 'swr'
-import PersonComponent from '../components/Person'
-import { Person } from '../interfaces'
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+const fetcher = (query: string) =>
+  fetch('/api/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({ query }),
+  })
+    .then((res) => res.json())
+    .then((json) => json.data)
 
 export default function Index() {
-  const { data, error } = useSWR('/api/people', fetcher)
+  const { data, error } = useSWR('{ users { name } }', fetcher)
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
 
+  const { users } = data
+
   return (
-    <ul>
-      {data.map((p: Person) => (
-        <PersonComponent key={p.id} person={p} />
+    <div>
+      {users.map((user: any, i: number) => (
+        <div key={i}>{user.name}</div>
       ))}
-    </ul>
+    </div>
   )
 }
