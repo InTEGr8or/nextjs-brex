@@ -1,10 +1,10 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // any configs you need
-}
+  reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
+  experimental: {
+    // Required:
+    appDir: true,
+  },
+};
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = nextConfig;
