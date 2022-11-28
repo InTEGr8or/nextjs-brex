@@ -1,10 +1,6 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
 })
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
-}
-
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = withMDX({
+  pageExtensions: ['js', 'jsx', 'mdx'],
+})
