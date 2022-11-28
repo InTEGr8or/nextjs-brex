@@ -1,11 +1,20 @@
-import styles from '../styles.module.css'
+import Link from 'next/link'
 
-const Home = () => {
+export default function IndexPage() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
+    <div>
+      Hello World.{' '}
+      <ul>
+        <li>
+          <Link href="/about">About</Link>
+        </li>
+        <li>
+          <Link href="/ssr">SSR</Link>
+        </li>
+        <li>
+          <Link href="/ssg">SSG</Link>
+        </li>
+      </ul>
     </div>
   )
 }
-
-export default Home
