@@ -1,11 +1,31 @@
-import styles from '../styles.module.css'
+import type { MouseEvent } from 'react'
+import Link from 'next/link'
+import { useCount, useDispatchCount } from '../components/Counter'
 
-const Home = () => {
+const IndexPage = () => {
+  const count = useCount()
+  const dispatch = useDispatchCount()
+
+  const handleIncrease = (event: MouseEvent<HTMLButtonElement>) =>
+    dispatch({
+      type: 'INCREASE',
+    })
+  const handleDecrease = (event: MouseEvent<HTMLButtonElement>) =>
+    dispatch({
+      type: 'DECREASE',
+    })
+
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
+    <>
+      <h1>HOME</h1>
+      <p>Counter: {count}</p>
+      <button onClick={handleIncrease}>Increase</button>
+      <button onClick={handleDecrease}>Decrease</button>
+      <p>
+        <Link href="/about">About</Link>
+      </p>
+    </>
   )
 }
 
-export default Home
+export default IndexPage

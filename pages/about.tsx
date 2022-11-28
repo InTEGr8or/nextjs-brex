@@ -1,24 +1,32 @@
-import { useUser } from '@auth0/nextjs-auth0'
-import Layout from '../components/layout'
+import type { MouseEvent } from 'react'
+import Link from 'next/link'
+import { useCount, useDispatchCount } from '../components/Counter'
 
-const About = () => {
-  const { user, isLoading } = useUser()
+const AboutPage = () => {
+  const count = useCount()
+  const dispatch = useDispatchCount()
+
+  const handleIncrease = (event: MouseEvent<HTMLButtonElement>) =>
+    dispatch({
+      type: 'INCREASE',
+    })
+  const handleIncrease15 = (event: MouseEvent<HTMLButtonElement>) =>
+    dispatch({
+      type: 'INCREASE_BY',
+      payload: 15,
+    })
 
   return (
-    <Layout user={user} loading={isLoading}>
-      <h1>About</h1>
+    <>
+      <h1>ABOUT</h1>
+      <p>Counter: {count}</p>
+      <button onClick={handleIncrease}>Increase</button>
+      <button onClick={handleIncrease15}>Increase By 15</button>
       <p>
-        This project shows different ways to display Profile info: using{' '}
-        <i>Client rendered</i>, <i>Server rendered</i>, and <i>API rendered</i>
+        <Link href="/">Home</Link>
       </p>
-      <p>
-        Navigating between this page and <i>Home</i> is always pretty fast.
-        However, when you navigate to the <i>Server rendered profile</i> page it
-        takes more time because it uses SSR to fetch the user and then to
-        display it
-      </p>
-    </Layout>
+    </>
   )
 }
 
-export default About
+export default AboutPage
