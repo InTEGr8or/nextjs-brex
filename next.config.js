@@ -1,10 +1,20 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
+module.exports = {
+  images: {
+    domains: ['cdn.builder.io'],
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value:
+              'frame-ancestors https://*.builder.io https://builder.io http://localhost:1234',
+          },
+        ],
+      },
+    ]
+  },
 }
-
-module.exports = withBundleAnalyzer(nextConfig)
