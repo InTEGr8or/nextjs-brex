@@ -1,14 +1,26 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import '../styles/globals.css'
+import type { AppProps } from 'next/app'
+import { MantineProvider } from '@mantine/core'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
-
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{
+        colorScheme: 'light',
+        breakpoints: {
+          xs: 500,
+          sm: 800,
+          md: 1000,
+          lg: 1200,
+          xl: 1400,
+        },
+      }}
+    >
       <Component {...pageProps} />
-    </UserProvider>
+    </MantineProvider>
   )
 }
+
+export default MyApp
