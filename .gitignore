@@ -34,3 +34,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# reason relay
+__generated__/
+schema/schema.graphql
+lib/
+.merlin
+*.bs.js
