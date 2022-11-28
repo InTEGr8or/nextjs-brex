@@ -1,10 +1,8 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
+// @generated: @expo/next-adapter@2.1.9
+// Learn more: https://github.com/expo/expo/blob/master/docs/pages/guides/using-nextjs.md
+
+const { withExpo } = require('@expo/next-adapter')
+
+module.exports = withExpo({
+  projectRoot: __dirname,
 })
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
-}
-
-module.exports = withBundleAnalyzer(nextConfig)

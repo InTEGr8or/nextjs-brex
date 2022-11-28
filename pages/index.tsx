@@ -1,11 +1,22 @@
-import styles from '../styles.module.css'
+// @generated: @expo/next-adapter@2.1.9
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
-const Home = () => {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 16,
+  },
+})
+
+export default function App() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
+    <View style={styles.container}>
+      <Text style={styles.text}>Welcome to Expo + Next.js 👋</Text>
+    </View>
   )
 }
-
-export default Home
