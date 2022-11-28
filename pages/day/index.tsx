@@ -1,3 +1,5 @@
-export default function DayPage() {
+const Day = () => {
   return <div>Hello Day</div>
 }
+
+export default Day

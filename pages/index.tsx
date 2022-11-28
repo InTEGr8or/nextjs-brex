@@ -1,9 +1,9 @@
-import styles from '../styles.module.css'
+import Link from 'next/link'
 
 const Home = () => {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
+    <div>
+      Hello World. <Link href="/about">About</Link>
     </div>
   )
 }
