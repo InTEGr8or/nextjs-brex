@@ -1,10 +1,22 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+const path = require('path')
+const CopyPlugin = require('copy-webpack-plugin')
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
+module.exports = {
+  webpack: (config) => {
+    config.plugins.push(
+      new CopyPlugin({
+        patterns: [
+          {
+            from: path.join(
+              __dirname,
+              'node_modules/ionicons/dist/ionicons/svg'
+            ),
+            to: path.join(__dirname, 'public/svg'),
+          },
+        ],
+      })
+    )
+    return config
+  },
 }
-
-module.exports = withBundleAnalyzer(nextConfig)
