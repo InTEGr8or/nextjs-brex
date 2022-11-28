@@ -1,14 +1,9 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import { AppProps } from 'next/app'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+  require('../mocks')
+}
 
-  const { user } = pageProps
-
-  return (
-    <UserProvider user={user}>
-      <Component {...pageProps} />
-    </UserProvider>
-  )
+export default function App({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />
 }
