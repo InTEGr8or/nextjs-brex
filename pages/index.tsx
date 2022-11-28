@@ -1,11 +1,20 @@
-import styles from '../styles.module.css'
-
-const Home = () => {
+export default function Home() {
   return (
-    <div className={styles.hello}>
+    <div className="hello">
       <p>Hello World</p>
+
+      <style jsx>{`
+        .hello {
+          font: 15px Helvetica, Arial, sans-serif;
+          background: #eee;
+          padding: 100px;
+          text-align: center;
+          transition: 100ms ease-in background;
+        }
+        .hello:hover {
+          background: #ccc;
+        }
+      `}</style>
     </div>
   )
 }
-
-export default Home
