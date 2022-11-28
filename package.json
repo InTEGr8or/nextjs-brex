@@ -1,19 +1,22 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next",
-    "build": "next build",
+    "dev": "concurrently \"bsb -clean-world -make-world -w\" \"next dev\"",
+    "dev:reason": "bsb -clean-world -make-world -w",
+    "dev:next": "next dev",
+    "build": "bsb -clean-world -make-world && next build",
     "start": "next start"
   },
   "dependencies": {
     "next": "latest",
+    "next-transpile-modules": "^9.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "reason-react": "^0.7.0"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
-    "typescript": "^4.7.4"
+    "@babel/core": "^7.8.4",
+    "bs-platform": "^7.1.0",
+    "concurrently": "^5.1.0"
   }
 }
