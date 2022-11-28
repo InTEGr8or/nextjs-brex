@@ -6,14 +6,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@hapi/iron": "6.0.0",
+    "@magic-sdk/admin": "1.0.0",
+    "cookie": "0.4.0",
+    "magic-sdk": "1.0.1",
     "next": "latest",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@types/node": "^18.0.0",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
-    "typescript": "^4.7.4"
+    "react-dom": "^18.2.0",
+    "swr": "0.5.5"
   }
 }
