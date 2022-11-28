@@ -1,27 +1,31 @@
-# Basic CSS example
+# next-intl example
 
-Next.js has built-in support for [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) allowing you to write scoped CSS by automatically creating a unique class name. CSS Module files can be imported anywhere in your application and you don't have to worry about collisions.
+This example uses [next-intl](https://github.com/amannn/next-intl), a minimal, but complete solution for managing internationalization in Next.js apps.
+
+## Features
+
+- 🌟 I18n is an essential part of the user experience, therefore this library doesn't compromise on flexibility and never leaves you behind when you need to fine tune a translation. Messages use the proven [ICU syntax](https://formatjs.io/docs/core-concepts/icu-syntax) which covers interpolation, numbers, dates, times, plurals, ordinal pluralization, label selection based on enums and rich text.
+- ⚔️ Based on battle-tested building blocks from [Format.JS](https://formatjs.io/) (used by `react-intl`), this library is a thin wrapper around high-quality, lower-level APIs for i18n.
+- 💯 Built-in number and date formatting that is integrated with translations, e.g. allowing for the usage of global formats for a consistent look & feel of your app.
+- 💡 A hooks-only API ensures that you can use the same API for `children` as well as for attributes which expect strings.
+- 🚀 Integrates with both static as well as server side rendering.
 
 ## Deploy your own
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/basic-css)
+Deploy the example using [Vercel](https://vercel.com) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-i18n-next-intl)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/basic-css&project-name=basic-css&repository-name=basic-css)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/next.js/tree/canary/examples/with-i18n-next-intl)
 
 ## How to use
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```bash
-npx create-next-app --example basic-css basic-css-app
+npx create-next-app --example with-i18n-next-intl
+# or
+yarn create next-app --example with-i18n-next-intl
+# or
+pnpm create next-app --example with-i18n-next-intl
 ```
 
-```bash
-yarn create next-app --example basic-css basic-css-app
-```
-
-```bash
-pnpm create next-app --example basic-css basic-css-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Deploy it to the cloud with [Vercel](https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
