@@ -1,14 +1,26 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import type { AppProps } from 'next/app'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+import '../styles/globals.css'
+import { Toaster } from 'react-hot-toast'
 
-  const { user } = pageProps
-
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
+    <>
       <Component {...pageProps} />
-    </UserProvider>
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          style: {
+            margin: '40px',
+            background: '#363636',
+            color: '#fff',
+            zIndex: 1,
+          },
+          duration: 5000,
+        }}
+      />
+    </>
   )
 }
+
+export default MyApp
