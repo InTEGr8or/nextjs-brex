@@ -1,14 +1,30 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import 'tailwindcss/tailwind.css'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+import type { AppProps } from 'next/app'
+import Head from 'next/head'
+import Header from '../components/header'
+import { Auth0Provider } from '@auth0/auth0-react'
 
-  const { user } = pageProps
-
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider user={user}>
-      <Component {...pageProps} />
-    </UserProvider>
+    <Auth0Provider
+      clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID}
+      domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN}
+    >
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="description"
+          content="Clone and deploy your own Next.js portfolio in minutes."
+        />
+        <title>My awesome blog</title>
+      </Head>
+
+      <Header />
+
+      <main className="py-14">
+        <Component {...pageProps} />
+      </main>
+    </Auth0Provider>
   )
 }
