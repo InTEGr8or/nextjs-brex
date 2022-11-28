@@ -1,11 +1,3 @@
-import styles from '../styles.module.css'
-
-const Home = () => {
-  return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
-  )
+export default function Home() {
+  return <div>Next-Offline Example, try to install app via chrome</div>
 }
-
-export default Home
