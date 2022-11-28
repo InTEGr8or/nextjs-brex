@@ -1,10 +1,36 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
-}
+module.exports = {
+  reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: '/',
+        destination: '/landing-page/landing-page-with-components',
+      },
+    ]
+  },
+  redirects() {
+    const sourcesRequiringAuthToken = [
+      '/',
+      '/landing-page/:slug*',
+      '/blog/:path*',
+    ]
 
-module.exports = withBundleAnalyzer(nextConfig)
+    return process.env.NEXT_PUBLIC_BUTTER_CMS_API_KEY
+      ? [
+          {
+            source: '/missing-token',
+            destination: '/',
+            permanent: false,
+          },
+        ]
+      : sourcesRequiringAuthToken.map((source) => ({
+          source: source,
+          destination: '/missing-token',
+          permanent: false,
+        }))
+  },
+  images: {
+    domains: ['cdn.buttercms.com'],
+  },
+}
