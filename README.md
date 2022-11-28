@@ -1,27 +1,48 @@
-# Basic CSS example
+# Electron with Typescript application example
 
-Next.js has built-in support for [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) allowing you to write scoped CSS by automatically creating a unique class name. CSS Module files can be imported anywhere in your application and you don't have to worry about collisions.
+This example show how you can use Next.js inside an Electron application to avoid a lot of configuration, use Next.js router as view and use server-render to speed up the initial render of the application. Both Next.js and Electron layers are written in TypeScript and compiled to JavaScript during the build process.
 
-## Deploy your own
+| Part       | Source code (Typescript) | Builds (JavaScript) |
+| ---------- | ------------------------ | ------------------- |
+| Next.js    | `/renderer`              | `/renderer`         |
+| Electron   | `/electron-src`          | `/main`             |
+| Production |                          | `/dist`             |
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/basic-css)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/basic-css&project-name=basic-css&repository-name=basic-css)
+For development it's going to run a HTTP server and let Next.js handle routing. In production it use `next export` to pre-generate HTML static files and use them in your app instead of running an HTTP server.
 
 ## How to use
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```bash
-npx create-next-app --example basic-css basic-css-app
+npx create-next-app --example with-electron-typescript with-electron-typescript-app
 ```
 
 ```bash
-yarn create next-app --example basic-css basic-css-app
+yarn create next-app --example with-electron-typescript with-electron-typescript-app
 ```
 
 ```bash
-pnpm create next-app --example basic-css basic-css-app
+pnpm create next-app --example with-electron-typescript with-electron-typescript-app
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Available commands:
+
+```bash
+"build-renderer": build and transpile Next.js layer
+"build-electron": transpile electron layer
+"build": build both layers
+"dev": start dev version
+"dist": create production electron build
+"type-check": check TypeScript in project
+```
+
+## Notes
+
+You can create the production app using `npm run dist`.
+
+_note regarding types:_
+
+- Electron provides its own type definitions, so you don't need @types/electron installed!
+  source: https://www.npmjs.com/package/@types/electron
+- There were no types available for `electron-next` at the time of creating this example, so until they are available there is a file `electron-next.d.ts` in `electron-src` directory.
