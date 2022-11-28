@@ -1,11 +1,11 @@
-import styles from '../styles.module.css'
+import { Box, Text, Button, Divider } from '@gympass/yoga'
 
-const Home = () => {
+export default function Home() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
+    <Box d="flex" flexDirection="column" alignItems="center">
+      <Text.H2>@gympass/yoga with Next.js</Text.H2>
+      <Divider />
+      <Button>Yoga Design System</Button>
+    </Box>
   )
 }
-
-export default Home
