@@ -1,11 +1,27 @@
-import styles from '../styles.module.css'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 
-const Home = () => {
+export default function Index({
+  time,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
+    <main>
+      <h1>SSR Caching with Next.js</h1>
+      <time dateTime={time}>{time}</time>
+    </main>
   )
 }
 
-export default Home
+export const getServerSideProps: GetServerSideProps<{ time: string }> = async ({
+  res,
+}) => {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
+
+  return {
+    props: {
+      time: new Date().toISOString(),
+    },
+  }
+}
