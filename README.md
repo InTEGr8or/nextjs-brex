@@ -1,27 +1,43 @@
-# Hello World example
+# Analyzer Bundles example
 
-This example shows the most basic idea behind Next. We have 2 pages: `pages/index.tsx` and `pages/about.tsx`. The former responds to `/` requests and the latter to `/about`. Using `next/link` you can add hyperlinks between them with universal routing capabilities. The `day` directory shows that you can have subdirectories.
+This example shows how to analyze the output bundles using [@next/bundle-analyzer](https://github.com/vercel/next.js/tree/canary/packages/next-bundle-analyzer)
 
 ## Deploy your own
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/hello-world)
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/analyze-bundles)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/hello-world&project-name=hello-world&repository-name=hello-world)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/analyze-bundles&project-name=analyze-bundles&repository-name=analyze-bundles)
 
 ## How to use
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```bash
-npx create-next-app --example hello-world hello-world-app
+npx create-next-app --example analyze-bundles analyze-bundles-app
 ```
 
 ```bash
-yarn create next-app --example hello-world hello-world-app
+yarn create next-app --example analyze-bundles analyze-bundles-app
 ```
 
 ```bash
-pnpm create next-app --example hello-world hello-world-app
+pnpm create next-app --example analyze-bundles analyze-bundles-app
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+### Analyze webpack output
+
+To analyze your webpack output, invoke the following command:
+
+```bash
+npm run analyze
+# or
+yarn analyze
+```
+
+Once the build is completed, you can inspect the bundle by running:
+
+```bash
+npm run serve
+# or
+yarn serve
+```
