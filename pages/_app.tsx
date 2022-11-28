@@ -1,14 +1,40 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import '../styles/globals.css'
+import React from 'react'
+import { useEffect } from 'react'
+import SuperTokensReact, {
+  SuperTokensWrapper,
+  redirectToAuth,
+} from 'supertokens-auth-react'
+import * as SuperTokensConfig from '../config/frontendConfig'
+import Session from 'supertokens-auth-react/recipe/session'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+if (typeof window !== 'undefined') {
+  SuperTokensReact.init(SuperTokensConfig.frontendConfig())
+}
 
-  const { user } = pageProps
+function MyApp({ Component, pageProps }): JSX.Element {
+  useEffect(() => {
+    async function doRefresh() {
+      if (pageProps.fromSupertokens === 'needs-refresh') {
+        if (await Session.attemptRefreshingSession()) {
+          location.reload()
+        } else {
+          // user has been logged out
+          redirectToAuth()
+        }
+      }
+    }
+    doRefresh()
+  }, [pageProps.fromSupertokens])
+  if (pageProps.fromSupertokens === 'needs-refresh') {
+    return null
+  }
 
   return (
-    <UserProvider user={user}>
+    <SuperTokensWrapper>
       <Component {...pageProps} />
-    </UserProvider>
+    </SuperTokensWrapper>
   )
 }
+
+export default MyApp

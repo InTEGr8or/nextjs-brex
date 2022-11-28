@@ -1,27 +1,28 @@
-# Basic CSS example
+# SuperTokens Example
 
-Next.js has built-in support for [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) allowing you to write scoped CSS by automatically creating a unique class name. CSS Module files can be imported anywhere in your application and you don't have to worry about collisions.
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/basic-css)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/basic-css&project-name=basic-css&repository-name=basic-css)
+This is a simple set up for applications protected by SuperTokens.
 
 ## How to use
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+- Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```bash
-npx create-next-app --example basic-css basic-css-app
+npx create-next-app --example with-supertokens with-supertokens-app
 ```
 
 ```bash
-yarn create next-app --example basic-css basic-css-app
+yarn create next-app --example with-supertokens with-supertokens-app
 ```
 
 ```bash
-pnpm create next-app --example basic-css basic-css-app
+pnpm create next-app --example with-supertokens with-supertokens-app
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+- Run `yarn install`
+
+- Run `npm run dev` to start the application on `http://localhost:3000`.
+
+## Notes
+
+- Take a look at [SuperTokens documentation](https://supertokens.io/docs/community/introduction).
+- We have provided development OAuth keys for the various in build third party providers in the `.env` file. Feel free to use them for development purposes, but **please create your own keys for production use**.
