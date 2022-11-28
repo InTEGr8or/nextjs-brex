@@ -3,17 +3,22 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "next",
+    "eject-next": "next-expo customize",
+    "eject": "expo eject"
   },
   "dependencies": {
+    "expo": "~37.0.3",
     "next": "latest",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
+    "react-native-web": "~0.11.7"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
-    "typescript": "^4.7.4"
+    "@expo/next-adapter": "2.1.5"
   }
 }
