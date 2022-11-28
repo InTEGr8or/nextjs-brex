@@ -1,14 +1,23 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import '../styles/globals.css'
+import Footer from '../components/Footer'
+import Head from 'next/head'
+import { Montserrat } from '@next/font/google'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+})
 
-  const { user } = pageProps
-
+export default function MyApp({ Component, pageProps }) {
   return (
-    <UserProvider user={user}>
-      <Component {...pageProps} />
-    </UserProvider>
+    <>
+      <Head>
+        <title>The Coffee House</title>
+      </Head>
+      <main className={`${montserrat.variable} font-sans`}>
+        <Component {...pageProps} />
+        <Footer />
+      </main>
+    </>
   )
 }
