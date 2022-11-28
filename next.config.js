@@ -1,10 +1,9 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
+module.exports = {
+  images: {
+    remotePatterns: [
+      { hostname: 'cdn.sanity.io' },
+      { hostname: 'source.unsplash.com' },
+    ],
+  },
 }
-
-module.exports = withBundleAnalyzer(nextConfig)
