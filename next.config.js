@@ -1,10 +1,5 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
+const withTM = require('next-transpile-modules')(['bs-platform'])
+
+module.exports = withTM({
+  pageExtensions: ['jsx', 'js', 'bs.js'],
 })
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
-}
-
-module.exports = withBundleAnalyzer(nextConfig)
