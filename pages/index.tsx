@@ -1,11 +1,9 @@
-import styles from '../styles.module.css'
+import HelloWorld from '../component/hello-world'
 
-const Home = () => {
+export default function Home() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
+    <div className="example">
+      <HelloWorld />
     </div>
   )
 }
-
-export default Home
