@@ -1,27 +1,32 @@
-# Basic CSS example
+# next-translate example
 
-Next.js has built-in support for [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) allowing you to write scoped CSS by automatically creating a unique class name. CSS Module files can be imported anywhere in your application and you don't have to worry about collisions.
+This is an example of using [next-translate](https://github.com/vinissimus/next-translate) in a Next.js project.
 
 ## Deploy your own
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/basic-css)
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-next-translate)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/basic-css&project-name=basic-css&repository-name=basic-css)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-next-translate&project-name=with-next-translate&repository-name=with-next-translate)
 
 ## How to use
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```bash
-npx create-next-app --example basic-css basic-css-app
+npx create-next-app --example with-next-translate with-next-translate-app
 ```
 
 ```bash
-yarn create next-app --example basic-css basic-css-app
+yarn create next-app --example with-next-translate with-next-translate-app
 ```
 
 ```bash
-pnpm create next-app --example basic-css basic-css-app
+pnpm create next-app --example with-next-translate with-next-translate-app
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
+## Notes
+
+This example is a basic starting point for using [next-translate](https://github.com/vinissimus/next-translate) with Next.js.
+It's a tool to translate Next.js applications respecting the [Automatic Static Optimization](https://nextjs.org/docs/advanced-features/automatic-static-optimization). Deploy static sites with full i18n support!

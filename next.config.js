@@ -1,10 +1,3 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+const nextTranslate = require('next-translate')
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
-}
-
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = nextTranslate({})
