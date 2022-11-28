@@ -1,10 +1,7 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
+module.exports = {
+  /*  this needs to be set to false until a bug in the compression npm module gets fixed. 
+reference: https://github.com/expressjs/compression/issues/122
+  */
+  compress: false,
 }
-
-module.exports = withBundleAnalyzer(nextConfig)
