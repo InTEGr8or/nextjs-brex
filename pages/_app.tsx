@@ -1,14 +1,12 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import { Provider } from 'mobx-react'
+import { useStore } from '../store'
 
 export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
+  const store = useStore(pageProps.initialState)
 
   return (
-    <UserProvider user={user}>
+    <Provider store={store}>
       <Component {...pageProps} />
-    </UserProvider>
+    </Provider>
   )
 }

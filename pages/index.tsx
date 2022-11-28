@@ -1,11 +1,5 @@
-import styles from '../styles.module.css'
+import SampleComponent from '../components/SampleComponent'
 
-const Home = () => {
-  return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
-    </div>
-  )
+export default function Home() {
+  return <SampleComponent title="Index Page" linkTo="/other" />
 }
-
-export default Home
