@@ -1,11 +1,9 @@
-import styles from '../styles.module.css'
-
-const Home = () => {
+export default function Index() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
+    <div data-test-id="1" data-custom="1a">
+      <div data-custom="2">
+        <h1 data-testid="3">Hello World!</h1>
+      </div>
     </div>
   )
 }
-
-export default Home
