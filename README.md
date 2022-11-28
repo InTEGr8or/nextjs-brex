@@ -1,27 +1,24 @@
-# Basic CSS example
+# Formspree & Next.js example
 
-Next.js has built-in support for [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) allowing you to write scoped CSS by automatically creating a unique class name. CSS Module files can be imported anywhere in your application and you don't have to worry about collisions.
+**An example of using [Formspree](https://formspree.io) with [Next.js](https://nextjs.org). For more information on how to use Formspree check out [our official integration guide](https://formspree.io/guides/nextjs/).**
 
-## Deploy your own
+## Get the code
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/basic-css)
+- **[Check out the demo site here](https://formspree-example-next.vercel.app/)**
+- Fork this example to your own Github repo. [**[Fork it &rarr;](https://github.com/formspree/formspree-example-next/fork)**]
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/basic-css&project-name=basic-css&repository-name=basic-css)
+Or just deploy directly to Vercel!
 
-## How to use
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-formspree&project-name=nextjs-with-formspree&repo-name=nextjs-with-formspree&demo-title=Next%20Site%20with%20Contact%20Form&demo-description=A%20Nextjs%20website%20with%20a%20simple%20contact%20form%20powered%20by%20Formspree&demo-url=https%3A%2F%2Fformspree-example-next.vercel.app%2F&integration-ids=oac_SOUPsixV2TP6CkvfaB91Jhri)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## Installation
 
-```bash
-npx create-next-app --example basic-css basic-css-app
+Clone down repo, navigate to the repo directory and…
+
+```shell
+# Install dependencies
+npm install
+
+# Run next locally at localhost:3000
+npm run dev
 ```
-
-```bash
-yarn create next-app --example basic-css basic-css-app
-```
-
-```bash
-pnpm create next-app --example basic-css basic-css-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
