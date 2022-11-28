@@ -1,10 +1,8 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+const withMakeswift = require('@makeswift/runtime/next/plugin')()
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // any configs you need
+  reactStrictMode: true,
 }
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = withMakeswift(nextConfig)
