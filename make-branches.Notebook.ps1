@@ -3,6 +3,8 @@
 $projPath = "C:/repos/nextjs/nextjs-brex"
 $examplesPath = "C:/repos/nextjs/next.js/examples"
 Get-ChildItem $examplesPath | Select-Object Name | Set-Variable examples
+
+$examples.Length
 # Get branches
 git branch -l | ForEach-Object {$_[2..100] -Join ''} | Set-Variable existingBranches
 # ## Make branches
@@ -11,7 +13,7 @@ git checkout main
 git pull
 git add .
 git commit -m "Updates"
-$examples[0..5] | ForEach-Object {
+$examples | ForEach-Object {
     if($true -OR -Not $existingBranches.Contains($_.Name)) {
         Write-Host "Adding branch $($_.Name)"
         git checkout main
