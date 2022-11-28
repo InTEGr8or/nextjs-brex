@@ -1,10 +1,6 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+const withMarkdoc = require('@markdoc/next.js')
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // any configs you need
-}
-
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports =
+  withMarkdoc(/* config: https://markdoc.io/docs/nextjs#options */)({
+    pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdoc'],
+  })
