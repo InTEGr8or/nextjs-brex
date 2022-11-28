@@ -1,14 +1,13 @@
-import { UserProvider } from '@auth0/nextjs-auth0'
+import { PrismicPreview } from '@prismicio/next'
+import { repositoryName } from '../lib/prismic'
+import '../styles/index.css'
 
-export default function App({ Component, pageProps }) {
-  // optionally pass the 'user' prop from pages that require server-side
-  // rendering to prepopulate the 'useUser' hook.
-
-  const { user } = pageProps
-
+function MyApp({ Component, pageProps }) {
   return (
-    <UserProvider user={user}>
+    <PrismicPreview repositoryName={repositoryName}>
       <Component {...pageProps} />
-    </UserProvider>
+    </PrismicPreview>
   )
 }
+
+export default MyApp
