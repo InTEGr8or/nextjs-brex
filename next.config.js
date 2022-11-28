@@ -1,10 +1,15 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // any configs you need
+  reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home/memory-cache',
+        permanent: true,
+      },
+    ]
+  },
 }
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = nextConfig

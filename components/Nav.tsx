@@ -1,39 +1,38 @@
-import ActiveLink from './ActiveLink'
+import { PropsWithChildren } from 'react'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { RouterProps } from './types'
 
-const Nav = () => (
-  <nav>
-    <style jsx>{`
-      .nav-link {
-        text-decoration: none;
-      }
+const CustomLink: React.FC<PropsWithChildren<{ to: string }>> = ({
+  to,
+  children,
+}) => {
+  const router = useRouter()
+  const { pathname } = router
+  const { cacheStrategy } = router.query as RouterProps
+  const linkPathname = `/${to}/[cacheStrategy]`
+  const className = `nav-link${pathname === linkPathname ? ' active' : ''}`
+  return (
+    <div>
+      <Link
+        href={{
+          pathname: linkPathname,
+          query: { cacheStrategy },
+        }}
+        scroll={false}
+        className={className}
+      >
+        {children}
+      </Link>
+    </div>
+  )
+}
 
-      .active:after {
-        content: ' (current page)';
-      }
-    `}</style>
-    <ul className="nav">
-      <li>
-        <ActiveLink activeClassName="active" href="/">
-          <a className="nav-link">Home</a>
-        </ActiveLink>
-      </li>
-      <li>
-        <ActiveLink activeClassName="active" href="/about">
-          <a className="nav-link">About</a>
-        </ActiveLink>
-      </li>
-      <li>
-        <ActiveLink activeClassName="active" href="/blog">
-          <a className="nav-link">Blog</a>
-        </ActiveLink>
-      </li>
-      <li>
-        <ActiveLink activeClassName="active" href="/[slug]" as="/dynamic-route">
-          <a className="nav-link">Dynamic Route</a>
-        </ActiveLink>
-      </li>
-    </ul>
-  </nav>
-)
-
-export default Nav
+export const Nav: React.FC = () => {
+  return (
+    <nav className="nav">
+      <CustomLink to="home">Home</CustomLink>
+      <CustomLink to="signin">Sign in</CustomLink>
+    </nav>
+  )
+}

@@ -1,27 +1,36 @@
-# Basic CSS example
+# An example app with FingerprintJS Pro
 
-Next.js has built-in support for [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) allowing you to write scoped CSS by automatically creating a unique class name. CSS Module files can be imported anywhere in your application and you don't have to worry about collisions.
+This example shows how to identify visitors using [FingerprintJS Pro](https://fingerprintjs.com/) with Next.js.
 
 ## Deploy your own
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/basic-css)
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/basic-css&project-name=basic-css&repository-name=basic-css)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-fingerprintjs-pro&project-name=with-fingerprintjs-pro&repository-name=with-fingerprintjs-pro)
 
 ## How to use
 
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
 ```bash
-npx create-next-app --example basic-css basic-css-app
+npx create-next-app --example with-fingerprintjs-pro with-fingerprintjs-pro-app
 ```
 
 ```bash
-yarn create next-app --example basic-css basic-css-app
+yarn create next-app --example with-fingerprintjs-pro with-fingerprintjs-pro-app
 ```
 
 ```bash
-pnpm create next-app --example basic-css basic-css-app
+pnpm create next-app --example with-fingerprintjs-pro with-fingerprintjs-pro-app
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
+## Notes
+
+### API key
+
+To identify visitors, you'll need a FingerprintJS Pro account (you can [sign up for free](https://dashboard.fingerprintjs.com/signup/)).
+You can learn more about API keys in the [official FingerprintJS Pro documentation](https://dev.fingerprintjs.com/docs/quick-start-guide).
+
+Once you get public key, you need to set up the API key in the environment variable `NEXT_PUBLIC_FPJS_PUBLIC_API_KEY`.
