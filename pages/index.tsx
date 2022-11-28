@@ -1,11 +1,11 @@
-import styles from '../styles.module.css'
+// @ts-ignore
+import { LeftHalf, RightHalf } from '../components/halves'
 
-const Home = () => {
+export default function Index() {
   return (
-    <div className={styles.hello}>
-      <p>Hello World</p>
+    <div>
+      <LeftHalf />
+      <RightHalf />
     </div>
   )
 }
-
-export default Home

@@ -1,10 +1,16 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+// @ts-check
 
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ **/
 const nextConfig = {
-  // any configs you need
+  experimental: {
+    modularizeImports: {
+      '../components/halves': {
+        transform: '../components/halves/{{ member }}',
+      },
+    },
+  },
 }
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = nextConfig
