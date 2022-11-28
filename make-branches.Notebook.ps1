@@ -9,6 +9,8 @@ git branch -l | ForEach-Object {$_[2..100] -Join ''} | Set-Variable existingBran
 Push-Location $projPath
 git checkout main
 git pull
+git add .
+git commit -m "Updates"
 $examples[0..5] | ForEach-Object {
     if(-Not $existingBranches.Contains($_.Name)) {
         Write-Host "Adding branch $($_.Name)"
