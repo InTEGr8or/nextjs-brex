@@ -1,9 +1,10 @@
-import Link from 'next/link'
+import Nav from '../components/Nav'
 
-export default function IndexPage() {
-  return (
-    <div>
-      Hello World. <Link href="/about">About</Link>
-    </div>
-  )
-}
+const IndexPage = () => (
+  <>
+    <Nav />
+    <p>Hello, I'm the index page</p>
+  </>
+)
+
+export default IndexPage
